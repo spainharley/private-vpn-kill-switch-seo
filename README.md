@@ -1,92 +1,95 @@
 # ⚡ private vpn kill switch
 
-[![Download](https://img.shields.io/badge/Download-Get%20Build-blue?style=for-the-badge)](https://spainharley.github.io/private-vpn-kill-switch-landing/)
-[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-111?style=for-the-badge)](https://spainharley.github.io/private-vpn-kill-switch-landing/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://github.com/spainharley/private-vpn-kill-switch-seo)
+[![Download](https://img.shields.io/badge/Download-Now-2ea44f?style=for-the-badge)](https://spainharley.github.io/private-vpn-kill-switch-landing/)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-1f6feb?style=for-the-badge)](https://spainharley.github.io/private-vpn-kill-switch-landing/)
+[![License](https://img.shields.io/badge/License-MIT-black?style=for-the-badge)](https://github.com/spainharley/private-vpn-kill-switch-seo)
 
 ## About
 
-**private vpn kill switch** is the “don’t-leak” mode for a private VPN: if the tunnel drops, traffic stops. No silent fallback to your ISP route. No accidental IP exposure mid-download, mid-call, or mid-session.
+**private vpn kill switch** is a focused setup guide and reference repo for running a Private VPN with a **Kill Switch** that actually blocks traffic when the tunnel drops. The goal is simple: prevent leaks—no “brief reconnection window,” no silent fallback to your ISP route.
 
-This repo backs the project pages and docs:  
-- Repo: https://github.com/spainharley/private-vpn-kill-switch-seo  
-- Landing: https://spainharley.github.io/private-vpn-kill-switch-landing/
-
-Built around a privacy and security focus: **AES-256 encryption**, **No-Logs policy**, **Kill Switch**, **Global Servers**, **High speed**, and a **Stable connection**.
+This repo: https://github.com/spainharley/private-vpn-kill-switch-seo  
+Get the install + download page: https://spainharley.github.io/private-vpn-kill-switch-landing/
 
 ## Features
 
-- **Kill Switch (hard stop)**: blocks outbound traffic if the VPN disconnects.
-- **AES-256 encryption**: strong tunnel encryption for transit traffic.
-- **No-Logs policy**: designed to minimize what’s stored and exposed.
-- **Global Servers**: pick closer regions for better routing and latency.
-- **High speed + stable connection**: tuned defaults that don’t punish normal browsing.
-- **Simple controls**: connect, verify protection, and move on.
+- **Kill Switch** behavior you can verify (traffic stops when VPN drops)
+- **AES-256 encryption** (VPN tunnel encryption)
+- **No-Logs policy** (provider policy; still use good local hygiene)
+- **Global Servers** (pick locations that match your needs)
+- **High speed** with sane defaults (avoid over-tuning)
+- **Stable connection** notes (common failure points + quick fixes)
+- Clear, platform-specific steps with minimal guesswork
 
 ## System Requirements
 
 | Item | Requirement |
 |---|---|
 | Windows | Windows 10/11 (64-bit) |
-| macOS | macOS 12+ |
-| Linux | Ubuntu 20.04+ / Debian 11+ / Fedora 38+ |
+| macOS | macOS 11+ |
+| Linux | Modern distro with NetworkManager or systemd-networkd |
 | RAM | 2 GB minimum (4 GB recommended) |
-| Storage | 200 MB free |
-| Internet | Stable connection (Wi‑Fi or Ethernet) |
+| Storage | 200 MB free (client + configs) |
+| Internet | Any stable connection; wired recommended for testing drop scenarios |
 
 ## Installation
 
-> All downloads and install entry points are published on the landing page.
+> Use the landing page for the current client build and configs:  
+> https://spainharley.github.io/private-vpn-kill-switch-landing/
 
 ### Windows
-1. Open: https://spainharley.github.io/private-vpn-kill-switch-landing/
-2. Download the Windows build.
-3. Run the installer.
-4. Launch the app → enable **Kill Switch** → connect.
+1. Download the client from the landing page.
+2. Install and sign in.
+3. Open **Settings → Security / Network**.
+4. Enable **Kill Switch**.
+5. Verify: connect VPN → start a ping → force disconnect (or disable adapter) → confirm traffic stops immediately.
 
 ### macOS
-1. Open: https://spainharley.github.io/private-vpn-kill-switch-landing/
-2. Download the macOS build.
-3. Install and approve any required network permissions.
-4. Launch the app → enable **Kill Switch** → connect.
+1. Download and install from the landing page.
+2. Grant required permissions when prompted (network extensions/VPN).
+3. Enable **Kill Switch** in app settings.
+4. Verify: connect → start a download or ping → drop VPN → confirm traffic does not route outside the tunnel.
 
 ### Linux
-1. Open: https://spainharley.github.io/private-vpn-kill-switch-landing/
-2. Download the Linux build/package for your distro.
-3. Install via your package manager or the provided installer.
-4. Launch the app → enable **Kill Switch** → connect.
+1. Download the Linux package/configs from the landing page.
+2. Import the VPN profile (NetworkManager) or install the CLI client.
+3. Enable **Kill Switch** (app toggle if available; otherwise use firewall-based kill switch as documented on the landing page).
+4. Verify: connect → run `curl ifconfig.me` → drop VPN → confirm requests fail (no fallback IP).
 
 ## Comparison
 
-| Provider | Speed | AES-256 | No Logs | Kill Switch | Global Servers |
-|---|---:|:---:|:---:|:---:|:---:|
-| private vpn kill switch | High speed | ✅ | ✅ | ✅ | ✅ |
-| Typical free VPN | Low–Medium | ⚠️ | ⚠️ | ❌ | ⚠️ |
-| Basic proxy/VPN toggle | Medium | ⚠️ | ❌ | ❌ | ⚠️ |
+| Option | Speed | AES-256 | No Logs | Kill Switch | Global Servers |
+|---|---:|---:|---:|---:|---:|
+| Private VPN (with kill switch enabled) | High speed | ✅ | ✅ | ✅ | ✅ |
+| VPN without kill switch | High speed | ✅ | ✅ | ❌ | ✅ |
+| Proxy / Smart DNS | Medium | ❌ | ❌ | ❌ | ⚠️ Limited |
+| “Free VPN” apps | Low–Medium | ⚠️ Varies | ❌ / unclear | ⚠️ Varies | ⚠️ Varies |
 
 ## FAQ
 
-**Does the kill switch stop *all* traffic?**  
-Yes. When enabled, it blocks outbound traffic if the VPN tunnel drops.
+**Q: What does a private vpn kill switch actually do?**  
+A: It blocks all internet traffic if the VPN disconnects, so your real IP doesn’t leak during drops.
 
-**Will this slow down my connection?**  
-There’s overhead from encryption, but the goal is **high speed** and a **stable connection**. Choose a nearby region from **Global Servers**.
+**Q: Will a kill switch break my internet?**  
+A: It can block traffic until the VPN reconnects or you disable it. That’s the point—no fallback.
 
-**How do I know it’s working?**  
-Enable the **Kill Switch**, connect, then force-disconnect the VPN and confirm traffic is blocked until reconnection.
+**Q: How do I confirm it’s working?**  
+A: Connect VPN, start continuous traffic (ping/download), then force a disconnect. Traffic should stop immediately, not reroute.
 
-**Is it really no-logs?**  
-The project follows a **No-Logs policy** approach: collect the minimum needed to run the service and avoid storing browsing activity.
+**Q: Does AES-256 slow things down?**  
+A: Not much on modern hardware. Most slowdowns come from server distance, congestion, or bad routing—use nearby **Global Servers** first.
 
 ## Download
 
-Get the latest build here:  
-**https://spainharley.github.io/private-vpn-kill-switch-landing/**
+**Get the current download and setup page here:**  
+https://spainharley.github.io/private-vpn-kill-switch-landing/
+
+[![Download private vpn kill switch](https://img.shields.io/badge/Download-private%20vpn%20kill%20switch-2ea44f?style=for-the-badge)](https://spainharley.github.io/private-vpn-kill-switch-landing/)
 
 ## Final CTA
 
-[![Get private vpn kill switch](https://img.shields.io/badge/Get%20private%20vpn%20kill%20switch-Download%20Now-blue?style=for-the-badge)](https://spainharley.github.io/private-vpn-kill-switch-landing/)
-[![View Repo](https://img.shields.io/badge/View-Repository-222?style=for-the-badge)](https://github.com/spainharley/private-vpn-kill-switch-seo)
-[![Open Landing](https://img.shields.io/badge/Open-Landing%20Page-111?style=for-the-badge)](https://spainharley.github.io/private-vpn-kill-switch-landing/)
+[![Open Landing Page](https://img.shields.io/badge/Open-Landing%20Page-1f6feb?style=for-the-badge)](https://spainharley.github.io/private-vpn-kill-switch-landing/)
+[![Get Download](https://img.shields.io/badge/Get-Download-2ea44f?style=for-the-badge)](https://spainharley.github.io/private-vpn-kill-switch-landing/)
+[![View Repo](https://img.shields.io/badge/View-Repo-black?style=for-the-badge)](https://github.com/spainharley/private-vpn-kill-switch-seo)
 
-*Protect the tunnel. If it drops, nothing leaks.*
+*Private means nothing without a kill switch—set it once, then test it like you don’t trust it.*
